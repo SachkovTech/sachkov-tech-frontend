@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./index.css";
+import "../index.css";
 
 type Props = {
 	value: string;
@@ -7,7 +7,6 @@ type Props = {
 };
 
 function Square({ value, onSquareClick }: Props) {
-	console.log("render");
 	return (
 		<button className="square" onClick={onSquareClick}>
 			{value}
@@ -15,7 +14,7 @@ function Square({ value, onSquareClick }: Props) {
 	);
 }
 
-export default function Board() {
+function Board() {
 	const [xIsNext, setXIsNext] = useState<boolean>(true);
 	const [squares, setSquares] = useState<string[]>(Array(9).fill(null));
 
@@ -36,7 +35,7 @@ export default function Board() {
 	}
 
 	return (
-		<>
+		<div className="flex flex-col">
 			<div className="board-row">
 				<Square value={squares[0]} onSquareClick={() => hanldeClick(0)} />
 				<Square value={squares[1]} onSquareClick={() => hanldeClick(1)} />
@@ -52,13 +51,13 @@ export default function Board() {
 				<Square value={squares[7]} onSquareClick={() => hanldeClick(7)} />
 				<Square value={squares[8]} onSquareClick={() => hanldeClick(8)} />
 			</div>
-		</>
+		</div>
 	);
 }
 
-export function App() {
+export function TicTacToe() {
 	return (
-		<div>
+		<div className="flex items-center justify-center flex-1 w-full mt-52">
 			<Board />
 		</div>
 	);
